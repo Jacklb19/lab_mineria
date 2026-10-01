@@ -1,6 +1,6 @@
 # Laboratorio 1: regresión lineal múltiple
 
-Este proyecto resuelve los tres ejercicios del laboratorio de minería de datos: predicción del precio del dólar, del nivel de glucosa y del consumo de energía. Incluye el entrenamiento, la evaluación, las gráficas, los modelos exportados y una aplicación web sencilla. El análisis sigue las fases de CRISP-DM y utiliza los tres CSV suministrados con el enunciado.
+Este proyecto resuelve los tres ejercicios del laboratorio de minería de datos: predicción del precio del dólar, del nivel de glucosa y del consumo de energía. Incluye el entrenamiento, la evaluación, las gráficas, los modelos exportados y aplicaciones web sencillas en Flask y Streamlit. El análisis sigue las fases de CRISP-DM y utiliza los tres CSV suministrados con el enunciado.
 
 ## 1. Objetivo y datos
 
@@ -95,6 +95,7 @@ Los coeficientes estandarizados se calculan como `coeficiente × desviación est
 | `config.py` | Define archivos, variables, unidades y campos de la web. |
 | `train.py` | Valida datos, separa entrenamiento y prueba, entrena, evalúa, exporta y dibuja. |
 | `app.py` | Carga los modelos y atiende el formulario de predicción. |
+| `streamlit_app.py` | Interfaz equivalente en Streamlit para ejecución local o en Community Cloud. |
 | `templates/index.html` y `static/style.css` | Página web minimalista. |
 | `modelos/*.joblib` | Un modelo final exportado por ejercicio. |
 | `graficas/*.png` | Tres gráficas por ejercicio, agrupadas en una imagen. |
@@ -112,9 +113,34 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe app.py
 ```
 
-Si `py -3.12` no existe, se puede usar `python -m venv .venv` con una instalación compatible de Python. Después se abre `http://127.0.0.1:5000` en el navegador. En la web se elige el ejercicio, se introducen las tres entradas y se pulsa **Predecir**. Por ejemplo, para dólar se puede ingresar `Dia=400`, `Inflacion=0.02` y `Tasa_interes=5`. La página avisa si una entrada queda fuera del rango observado en el CSV.
+Si `py -3.12` no existe, se puede usar `python -m venv .venv` con una instalación compatible de Python. El comando anterior abre la versión Flask en `http://127.0.0.1:5000`. Para usar la versión Streamlit, se ejecuta en su lugar:
 
-Si se cambian los CSV, hay que ejecutar de nuevo `train.py` y reiniciar `app.py` para cargar los modelos actualizados. Los archivos `.joblib` solo deben cargarse si provienen de este proyecto o de una fuente de confianza.
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
+```
+
+En cualquiera de las dos interfaces se elige el ejercicio, se introducen las tres entradas y se pulsa **Predecir**. Por ejemplo, para dólar se puede ingresar `Dia=400`, `Inflacion=0.02` y `Tasa_interes=5`. La página avisa si una entrada queda fuera del rango observado en el CSV.
+
+### Publicar en Streamlit Community Cloud
+
+1. Subir a GitHub `streamlit_app.py` y los cambios en `requirements.txt` y `README.md`. `config.py`, `resultados.json` y `modelos/` ya forman parte del proyecto; los modelos no necesitan entrenarse en la nube.
+2. Entrar a `https://share.streamlit.io/` con GitHub y elegir **Create app**.
+3. Seleccionar el repositorio `Jacklb19/lab_mineria`, la rama `main` y `streamlit_app.py` como archivo de entrada.
+4. En **Advanced settings**, elegir Python 3.12 y pulsar **Deploy**. Streamlit instalará lo indicado en `requirements.txt` y cargará los archivos del repositorio.
+
+Desde la raíz del proyecto, los cambios se pueden subir con:
+
+```powershell
+git add streamlit_app.py requirements.txt README.md
+git commit -m "Agregar aplicación Streamlit"
+git push origin main
+```
+
+La guía oficial del servicio está en [Deploy your app on Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy).
+
+Estas son instrucciones para una publicación posterior; el proyecto no se publica automáticamente al ejecutar el código local.
+
+Si se cambian los CSV, hay que ejecutar de nuevo `train.py` y reiniciar la aplicación para cargar los modelos actualizados. Los archivos `.joblib` solo deben cargarse si provienen de este proyecto o de una fuente de confianza.
 
 ## 6. Conclusiones y límites
 
