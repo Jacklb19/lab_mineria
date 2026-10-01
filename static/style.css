@@ -1,0 +1,22 @@
+:root { font-family: Arial, sans-serif; color: #172033; background: #f5f7fa; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.contenedor { max-width: 620px; margin: 52px auto; padding: 0 20px; }
+h1 { margin: 0 0 8px; font-size: 2rem; }
+h2 { margin: 0 0 24px; font-size: 1.25rem; }
+.intro, .nota { color: #5b6574; line-height: 1.5; }
+.selector { margin: 28px 0; }
+.tarjeta, .mensaje { background: white; border: 1px solid #dce2ea; border-radius: 10px; padding: 24px; }
+label { display: block; margin-bottom: 8px; font-weight: 600; }
+select, input { width: 100%; padding: 11px 12px; border: 1px solid #bfc9d5; border-radius: 6px; font: inherit; background: white; }
+.campo { margin-bottom: 20px; }
+small { display: block; margin-top: 6px; color: #5b6574; }
+button { border: 0; border-radius: 6px; padding: 11px 18px; background: #2253ae; color: white; font: inherit; cursor: pointer; }
+button:hover { background: #173d86; }
+.mensaje { margin-top: 20px; }
+.error { color: #9b1c1c; border-color: #e7b6b6; }
+.aviso { color: #765100; border-color: #e8d49b; }
+.resultado span { display: block; color: #5b6574; margin-bottom: 8px; }
+.resultado strong { font-size: 1.6rem; }
+.nota { font-size: 0.9rem; margin-top: 22px; }
+@media (max-width: 640px) { .contenedor { margin: 28px auto; } .tarjeta { padding: 18px; } }

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Predicciones | Laboratorio de minería de datos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="contenedor">
+    <h1>Predicciones</h1>
+    <p class="intro">Modelos de regresión lineal para los tres ejercicios del laboratorio.</p>
+
+    <form method="get" class="selector">
+      <label for="ejercicio">Ejercicio</label>
+      <select name="ejercicio" id="ejercicio" onchange="this.form.submit()">
+        {% for clave, datos in ejercicios.items() %}
+          <option value="{{ clave }}" {% if clave == nombre %}selected{% endif %}>{{ datos.titulo }}</option>
+        {% endfor %}
+      </select>
+      <noscript><button type="submit">Seleccionar</button></noscript>
+    </form>
+
+    <form method="post" class="tarjeta">
+      <input type="hidden" name="ejercicio" value="{{ nombre }}">
+      <h2>{{ ejercicio.titulo }}</h2>
+      {% for variable, definicion in ejercicio.variables.items() %}
+        <div class="campo">
+          <label for="{{ variable }}">{{ definicion.etiqueta }}</label>
+          <input id="{{ variable }}" name="{{ variable }}" type="number"
+                 step="{{ 1 if definicion.tipo == 'entero' else 'any' }}"
+                 {% if definicion.minimo is defined %}min="{{ definicion.minimo }}"{% endif %}
+                 {% if definicion.maximo is defined %}max="{{ definicion.maximo }}"{% endif %}
+                 value="{{ valores.get(variable, '') }}" required>
+          <small>{{ definicion.ayuda }}</small>
+        </div>
+      {% endfor %}
+      <button type="submit">Predecir</button>
+    </form>
+
+    {% if error %}<p class="mensaje error" role="alert">{{ error }}</p>{% endif %}
+    {% if prediccion is not none %}
+      <div class="mensaje resultado" aria-live="polite">
+        <span>Predicción estimada</span>
+        <strong>{{ '%.2f'|format(prediccion) }} {{ ejercicio.unidad }}</strong>
+      </div>
+    {% endif %}
+    {% if advertencia %}<p class="mensaje aviso">{{ advertencia }}</p>{% endif %}
+    <p class="nota">Resultado estimado con los datos del laboratorio. Consulta las métricas y limitaciones en el README.</p>
+  </main>
+</body>
+</html>

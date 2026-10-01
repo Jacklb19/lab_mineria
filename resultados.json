@@ -1,0 +1,125 @@
+{
+  "dolar": {
+    "archivo": "dolar_data.csv",
+    "filas": 500,
+    "filas_entrenamiento": 400,
+    "filas_prueba": 100,
+    "particion": "80 % primeros días / 20 % últimos días",
+    "objetivo": "Precio_Dolar",
+    "variables": [
+      "Dia",
+      "Inflacion",
+      "Tasa_interes"
+    ],
+    "intercepto": 3978.984617035362,
+    "coeficientes": {
+      "Dia": 4.9990598391198775,
+      "Inflacion": -338.0597613395682,
+      "Tasa_interes": -2.532822878794454
+    },
+    "coeficientes_estandarizados": {
+      "Dia": 0.9977595033802463,
+      "Inflacion": -0.002291231057423052,
+      "Tasa_interes": -0.0017109476818857193
+    },
+    "mse": 2905.7132283732476,
+    "rmse": 53.90466796459512,
+    "r2": 0.8788301969124285,
+    "rangos": {
+      "Dia": [
+        1.0,
+        500.0
+      ],
+      "Inflacion": [
+        0.0037936632996546,
+        0.0392636574532736
+      ],
+      "Tasa_interes": [
+        3.6515566785292144,
+        6.316191032418695
+      ]
+    }
+  },
+  "glucosa": {
+    "archivo": "glucosa_data.csv",
+    "filas": 2000,
+    "filas_entrenamiento": 1600,
+    "filas_prueba": 400,
+    "particion": "80 % entrenamiento / 20 % prueba, aleatoria (semilla 42)",
+    "objetivo": "Nivel_Glucosa",
+    "variables": [
+      "Edad",
+      "IMC",
+      "Actividad_Fisica"
+    ],
+    "intercepto": 66.3149908298401,
+    "coeficientes": {
+      "Edad": 1.2336813789485996,
+      "IMC": 0.8832359026438169,
+      "Actividad_Fisica": -2.0103859239132404
+    },
+    "coeficientes_estandarizados": {
+      "Edad": 0.7915868167657742,
+      "IMC": 0.1286784382747775,
+      "Actividad_Fisica": -0.2141224922435097
+    },
+    "mse": 233.69300045085822,
+    "rmse": 15.287020653183479,
+    "r2": 0.6813715865404841,
+    "rangos": {
+      "Edad": [
+        20.0,
+        79.0
+      ],
+      "IMC": [
+        10.586716611072555,
+        39.43022745196606
+      ],
+      "Actividad_Fisica": [
+        0.0,
+        9.0
+      ]
+    }
+  },
+  "energia": {
+    "archivo": "energia_data.csv",
+    "filas": 10000,
+    "filas_entrenamiento": 8000,
+    "filas_prueba": 2000,
+    "particion": "80 % entrenamiento / 20 % prueba, aleatoria (semilla 42)",
+    "objetivo": "Consumo_Energia",
+    "variables": [
+      "Temperatura",
+      "Hora",
+      "Dia_Semana"
+    ],
+    "intercepto": 101.38299006073441,
+    "coeficientes": {
+      "Temperatura": 9.965998029708866,
+      "Hora": 5.0117596542276335,
+      "Dia_Semana": -3.089170180976778
+    },
+    "coeficientes_estandarizados": {
+      "Temperatura": 0.7813545481573078,
+      "Hora": 0.5434828591065001,
+      "Dia_Semana": -0.09680344446139201
+    },
+    "mse": 429.51869176035575,
+    "rmse": 20.724832731782318,
+    "r2": 0.8968196536749335,
+    "rangos": {
+      "Temperatura": [
+        5.387998741908287,
+        44.63118853218163
+      ],
+      "Hora": [
+        1.0,
+        24.0
+      ],
+      "Dia_Semana": [
+        1.0,
+        7.0
+      ]
+    }
+  }
+}
